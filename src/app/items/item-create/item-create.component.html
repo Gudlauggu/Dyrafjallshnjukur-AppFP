@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <h4>
+        <button
+          class="btn btn-outline-primary"
+          (click)="back()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+        </button>
+         Create Item
+      </h4>
+      <hr>
+      <div class="col-md-12">
+        <form (ngSubmit)="save()" [formGroup]="itemGroup" novalidate>
+          <div class="form-group">
+            <label class="center-block">Name:
+              <input class="form-control" formControlName="name">
+            </label>
+            <button
+              type="submit"
+              class="btn btn-outline-primary">
+              <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
+            </button>
+
+          </div>
+        </form>
+        {{itemGroup.value | json}}
+        {{itemGroup.status | json}}
+      </div>
+    </div>
+  </div>
+</div>

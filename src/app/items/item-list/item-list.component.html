@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <h2>Items
+      <div class="pull-right">
+        <button class="btn btn-outline-primary" (click)="createItem()">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+
+        </button>
+      </div>
+      </h2>
+      <hr>
+    </div>
+    <div class="col-md-12">
+      <div class="list-group">
+        <a (click)="details(item)" *ngFor="let item of items" class="list-group-item list-group-item-action">
+          <img class="rounded float-left img" src="http://via.placeholder.com/90x90">
+          <h5>{{item.name}}</h5>
+          <div *ngIf="!itemToDelete || itemToDelete.id != item.id" class="pull-right">
+            <button class="btn btn-outline-warning">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-outline-danger" (click)="delete(item, $event)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div *ngIf="itemToDelete && itemToDelete.id == item.id " class="pull-right">
+            <button class="btn btn-outline-danger" (click)="deleteConfirmed($event)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-outline-warning" (click)="deleteAborted($event)">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>
