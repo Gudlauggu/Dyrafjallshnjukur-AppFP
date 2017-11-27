@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class ItemListComponent implements OnInit {
 
-  item: Item[];
+  items: Item[];
   itemToDelete: Item;
   constructor(private itemService: ItemService,
              private router: Router) {
@@ -20,7 +20,7 @@ export class ItemListComponent implements OnInit {
   ngOnInit() {
     this.itemService.get().subscribe(
       items => {
-        this.item = items;
+        this.items = items;
       }
     );
   }
@@ -45,7 +45,7 @@ export class ItemListComponent implements OnInit {
       .switchMap(item => this.itemService.get())
         .subscribe(
           items => {
-            this.item = items;
+            this.items = items;
           }
         );
     $event.stopPropagation();
