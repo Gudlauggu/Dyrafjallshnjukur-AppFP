@@ -51,7 +51,7 @@ export class ItemListComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  createVideo() {
+  createItem() {
     this.router.navigateByUrl('/items/create');
   }
 }

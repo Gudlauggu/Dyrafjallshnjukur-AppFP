@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 
-const url = environment.apiEndpoint + '/video';
+const url = environment.apiEndpoint + '/item';
 @Injectable()
 export class ItemService {
 
