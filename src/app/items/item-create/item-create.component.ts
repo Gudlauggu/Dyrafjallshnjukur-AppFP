@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ItemType} from '../../itemTypes/shared/itemType.model';
+import {Item} from '../shared/item.model';
+import {ItemService} from '../shared/item.service';
+import {ItemtypeService} from '../../itemTypes/shared/itemtype.service';
+import {DISABLED} from '@angular/forms/src/model';
+import {until} from 'selenium-webdriver';
+import elementIsDisabled = until.elementIsDisabled;
 
 @Component({
   selector: 'app-item-create',
@@ -10,23 +17,67 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class ItemCreateComponent implements OnInit {
 
   itemGroup: FormGroup;
+  itemCreated = false;
+  itemTypesIn: ItemType[];
+  @Input()
+  itemTypeId: number;
   constructor(private router: Router,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private itemService: ItemService,
+              private itemTypeService: ItemtypeService) {
     this.itemGroup = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      // year: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]]
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      // type: ['', [Validators.required, ]]
     });
   }
 
   ngOnInit() {
+    this.itemTypeService.get().subscribe(
+      itemTypes => {
+        this.itemTypesIn = itemTypes;
+      }
+    );
+  }
+
+  isInvalid(controlName: string) {
+    const control = this.itemGroup.controls[controlName];
+    return control.invalid && (control.touched || control.dirty);
+  }
+
+
+  isValid(controlName: string) {
+    const control = this.itemGroup.controls[controlName];
+    return !control.invalid && (control.touched || control.dirty);
   }
 
   back() {
     this.router.navigateByUrl('/items');
   }
 
-  save() {
-    console.log('Saving Item');
+  closeAlert() {
+    this.itemCreated = false;
   }
 
+  save() {
+    console.log(this.itemTypeId);
+    const itemValues = this.itemGroup.value;
+    const item: Item = {
+      name: itemValues.name,
+      itemTypeId: this.itemTypeId
+    };
+    console.log(item);
+    this.itemService.create(item)
+      .subscribe(item => {
+        this.itemGroup.reset();
+        this.itemCreated = true;
+        setTimeout(() => {
+          this.itemCreated = false;
+        }, 3000);
+      });
+  }
+
+  handleEvent(value) {
+    console.log(value);
+    this.itemTypeId = value;
+  }
 }

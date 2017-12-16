@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Item} from '../shared/item.model';
 import {ItemService} from '../shared/item.service';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
 
 @Component({
   selector: 'app-item-list',
@@ -12,9 +14,10 @@ export class ItemListComponent implements OnInit {
 
   items: Item[];
   itemToDelete: Item;
+  itemGroup: FormGroup;
   constructor(private itemService: ItemService,
-             private router: Router) {
-
+             private router: Router,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {

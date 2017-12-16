@@ -14,19 +14,46 @@
       <div class="col-md-12">
         <form (ngSubmit)="save()" [formGroup]="itemGroup" novalidate>
           <div class="form-group">
-            <label class="center-block">Name:
-              <input class="form-control" formControlName="name">
+            <label class="center-block col-md-12">Name:
+              <input class="form-control"
+                     placeholder="Name: Tuborg"
+                     [ngClass]="{
+                     'is-invalid':isInvalid('name'),
+                     'is-valid':isValid('name')}"
+                     formControlName="name">
+              <div *ngIf="isInvalid('name')"
+                   class="invalid-feedback">
+                <div *ngIf="itemGroup.controls['name'].errors.required">
+                  Name is required.
+                </div>
+                <div *ngIf="itemGroup.controls['name'].errors.minlength">
+                  Name must be at least 3 characters long.
+                </div>
+                <div *ngIf="itemGroup.controls['name'].errors.maxlength">
+                  Name cannot be longer than 20 characters
+                </div>
+              </div>
             </label>
+            <div class="center-block col-md-12">
+              <app-itemtype-list
+              [itemTypes]="itemTypesIn"
+              (selectITIdOutPut)="handleEvent($event)">
+
+              </app-itemtype-list>
+            </div>
+
             <button
+              [disabled]="itemGroup.invalid"
               type="submit"
-              class="btn btn-outline-primary">
+              class="btn btn-outline-primary pull-right">
               <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
             </button>
+            </div>
 
-          </div>
         </form>
-        {{itemGroup.value | json}}
-        {{itemGroup.status | json}}
+        <ngb-alert *ngIf="itemCreated" (close)="closeAlert()" type="success">Success!</ngb-alert>
+
+
       </div>
     </div>
   </div>

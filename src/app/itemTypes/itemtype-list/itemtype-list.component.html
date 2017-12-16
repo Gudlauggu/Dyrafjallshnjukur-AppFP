@@ -1,0 +1,22 @@
+
+<div class="row">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary"
+              id="dropdownBasic1"
+              type="button"
+              ngbDropdownToggle>
+        <i class="fa fa-flask" aria-hidden="true"></i> Type</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button *ngFor="let itemType of itemTypes"
+                type="button"
+                (click)="sendOutEvent(itemType)"
+                class="dropdown-item"> {{itemType.name}} </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

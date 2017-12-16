@@ -10,6 +10,8 @@ import { ItemListComponent } from './items/item-list/item-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ItemCreateComponent } from './items/item-create/item-create.component';
+import { ItemtypeListComponent } from './itemTypes/itemtype-list/itemtype-list.component';
+import {ItemtypeService} from './itemTypes/shared/itemtype.service';
 
 const appRoutes: Routes = [
   { path: 'item/:id',
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     AppComponent,
     ItemListComponent,
     ItemDetailComponent,
-    ItemCreateComponent
+    ItemCreateComponent,
+    ItemtypeListComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     ReactiveFormsModule
   ],
-  providers: [ItemService],
-  bootstrap: [AppComponent]
+  providers: [ItemService, ItemtypeService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

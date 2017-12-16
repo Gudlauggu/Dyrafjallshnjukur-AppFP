@@ -27,4 +27,9 @@ export class ItemService {
       .delete<Item>(url + '/' + id);
   }
 
+  create(item: Item): Observable<Item> {
+    return this.http
+      .post<Item>(url, item);
+  }
+
 }

@@ -20,7 +20,10 @@
               <dt class="col-md-2">Item: </dt>
               <dd class="col-md-10">{{item?.name}}</dd>
             </dl>
-
+              <dl class="row">
+                <dt class="col-md-2">Type: </dt>
+                <dd class="col-md-10">{{item?.itemType.name}}</dd>
+              </dl>
          </div>
         </div>
         <div class="card-footer bg-transparent ">
@@ -32,6 +35,7 @@
               <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
             </button>
           </div>
+
           <div class="pull-right" *ngIf="confirmDelete">
             <button class="btn btn-outline-danger" (click)="deleteConfirmed()">
               <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
