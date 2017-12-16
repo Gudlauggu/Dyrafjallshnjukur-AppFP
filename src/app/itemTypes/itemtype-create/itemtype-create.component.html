@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <h4>
+        <button
+          class="btn btn-outline-primary"
+          (click)="back()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+        </button>
+        Create Type
+      </h4>
+      <hr>
+      <div class="col-md-12">
+        <form (ngSubmit)="save()" [formGroup]="itemTypeGroup" novalidate>
+          <div class="form-group">
+            <label class="center-block col-md-12">Name:
+              <input class="form-control"
+                     placeholder="Name: Cyder"
+                     [ngClass]="{
+                     'is-invalid':isInvalid('name'),
+                     'is-valid':isValid('name')}"
+                     formControlName="name">
+              <div *ngIf="isInvalid('name')"
+                   class="invalid-feedback">
+                <div *ngIf="itemTypeGroup.controls['name'].errors.required">
+                  Name is required.
+                </div>
+                <div *ngIf="itemTypeGroup.controls['name'].errors.minlength">
+                  Name must be at least 3 characters long.
+                </div>
+                <div *ngIf="itemTypeGroup.controls['name'].errors.maxlength">
+                  Name cannot be longer than 20 characters
+                </div>
+              </div>
+            </label>
+              <label></label>
+              <button
+                [disabled]="itemTypeGroup.invalid"
+                type="submit"
+                class="btn btn-outline-primary pull-right">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
+              </button>
+          </div>
+
+        </form>
+        <ngb-alert *ngIf="itemTypeCreated" (close)="closeAlert()" type="success">Success!</ngb-alert>
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ItemCreateComponent } from './items/item-create/item-create.component';
 import { ItemtypeListComponent } from './itemTypes/itemtype-list/itemtype-list.component';
 import {ItemtypeService} from './itemTypes/shared/itemtype.service';
+import { ItemtypeCreateComponent } from './itemTypes/itemtype-create/itemtype-create.component';
 
 const appRoutes: Routes = [
   { path: 'item/:id',
@@ -28,6 +29,10 @@ const appRoutes: Routes = [
   { path: '',
     redirectTo: '/items',
     pathMatch: 'full'
+  },
+  {
+    path: 'itemtype/create',
+    component: ItemtypeCreateComponent
   }
 ];
 
@@ -37,7 +42,8 @@ const appRoutes: Routes = [
     ItemListComponent,
     ItemDetailComponent,
     ItemCreateComponent,
-    ItemtypeListComponent
+    ItemtypeListComponent,
+    ItemtypeCreateComponent
   ],
   imports: [
     BrowserModule,

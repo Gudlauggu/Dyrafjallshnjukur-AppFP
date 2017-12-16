@@ -1,13 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ItemType} from '../../itemTypes/shared/itemType.model';
 import {Item} from '../shared/item.model';
 import {ItemService} from '../shared/item.service';
 import {ItemtypeService} from '../../itemTypes/shared/itemtype.service';
-import {DISABLED} from '@angular/forms/src/model';
-import {until} from 'selenium-webdriver';
-import elementIsDisabled = until.elementIsDisabled;
 
 @Component({
   selector: 'app-item-create',
@@ -79,5 +76,9 @@ export class ItemCreateComponent implements OnInit {
   handleEvent(value) {
     console.log(value);
     this.itemTypeId = value;
+  }
+
+  createItemType() {
+    this.router.navigateByUrl('/itemtype/create');
   }
 }

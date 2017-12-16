@@ -3,7 +3,6 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {ItemType} from './itemType.model';
 import {Observable} from 'rxjs/Observable';
-import {Item} from '../../items/shared/item.model';
 
 const url = environment.apiEndpoint + '/itemtype';
 
@@ -15,5 +14,10 @@ export class ItemtypeService {
   get(): Observable<ItemType[]> {
     return this.http
       .get<ItemType[]>(url);
+  }
+
+  create(itemType: ItemType): Observable<ItemType> {
+    return this.http
+      .post<ItemType>(url, itemType);
   }
 }
