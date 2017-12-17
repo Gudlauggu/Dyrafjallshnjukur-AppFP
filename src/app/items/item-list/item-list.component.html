@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+<div class="main"></div>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -10,14 +12,6 @@
       </div>
       </h2>
       <hr>
-      <!--<form [formGroup]="itemGroup">
-        <div class="form-group">
-          <label class="center-block">
-            Search:
-            <input placeholder="Example: Tuborg">
-          </label>
-        </div>
-      </form>-->
     </div>
     <div class="col-md-12">
       <div class="list-group">
@@ -25,9 +19,6 @@
           <img class="rounded float-left img" src="http://via.placeholder.com/90x90">
           <h5>{{item.name}}</h5>
           <div *ngIf="!itemToDelete || itemToDelete.id != item.id" class="pull-right">
-            <button class="btn btn-outline-warning">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </button>
             <button class="btn btn-outline-danger" (click)="delete(item, $event)">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
