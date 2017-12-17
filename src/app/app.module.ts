@@ -13,6 +13,8 @@ import { ItemCreateComponent } from './items/item-create/item-create.component';
 import { ItemtypeListComponent } from './itemTypes/itemtype-list/itemtype-list.component';
 import {ItemtypeService} from './itemTypes/shared/itemtype.service';
 import { ItemtypeCreateComponent } from './itemTypes/itemtype-create/itemtype-create.component';
+import { LoginComponent } from './auth/login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
   { path: 'item/:id',
@@ -33,8 +35,12 @@ const appRoutes: Routes = [
   {
     path: 'itemtype/create',
     component: ItemtypeCreateComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
-];
+  ];
 
 @NgModule({
   declarations: [
@@ -43,7 +49,9 @@ const appRoutes: Routes = [
     ItemDetailComponent,
     ItemCreateComponent,
     ItemtypeListComponent,
-    ItemtypeCreateComponent
+    ItemtypeCreateComponent,
+    LoginComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
